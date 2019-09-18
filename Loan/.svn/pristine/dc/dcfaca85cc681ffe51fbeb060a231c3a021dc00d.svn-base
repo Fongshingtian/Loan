@@ -1,0 +1,53 @@
+package com.ht.dao;
+
+import com.ht.bean.*;
+import org.apache.ibatis.annotations.Param;
+
+import java.security.cert.Certificate;
+import java.util.List;
+
+public interface mmfdao {
+    List<rotation> getrotation();
+    List<rotation> getrotationbyid(@Param("id") Integer id);
+    void addtu(rotation r);
+    void updtu(rotation r);
+    List<product_induce> selpro();
+    List getBusinessOutltts();
+    List getBusinessOutlttscity(String i);
+    List<introduceGenre> getAllGenre();
+    //资质证书
+    List<certificate> getAllcertificate();
+    //在线荣誉
+    List<honor> getAllhonor();
+    //合作伙伴 0 //合作媒体 1
+    introduce getintroducebyid(Integer id);
+    List<NewsList> getnewslist(Integer i);
+    int NewList();
+    void addcer(certificate c);
+    void addhon(honor h);
+    void delcer(@Param("id") Integer id);
+    void delhon(@Param("id") Integer id);
+    //（0：合作伙伴，1：合作媒体）
+    List<cooperation> getcooperationbycategory(Integer category);
+    void updintroduce(introduce i);
+    void delcoll(@Param("id") Integer id);
+    void addcoll(cooperation c);
+    //查询新手专享标
+    public List selezbgj(Integer types);
+    public information selallinfor();
+    List<report> selreport();
+    void addreport(report re);
+    report selreoorts(Integer id);
+    //mintime   最小期限    maxtime最大期限 minmoney最小利率    maxmoney最大利率    hkfs 还款方式   minsy 最小剩余金额    max剩余金额 px  排序方式
+    public List<scattered> selscatered(@Param("mintime") String mintime,@Param("maxtime")String maxtime,@Param("minmoney")String minmoney,@Param("maxmoney")String maxmoney,@Param("hkfs")String hkfs,@Param("minsy")String minsy,@Param("maxsy")String maxsy,@Param("px")String px,@Param("i") Integer i);
+    List<Loan> getscattered(@Param("i")Integer i,@Param("t")Integer t);
+    int loanlist();
+    Loan selloan(Integer id);
+    int updloan(Integer id);
+    Mx selmx(String idCardNo);
+    int insertscattered(scattered s);
+    public int scatteredlist();
+    //根据id查询scattered（散标）表
+    scattered selscatteredbyid(Integer id);
+    List selhkfs();
+}

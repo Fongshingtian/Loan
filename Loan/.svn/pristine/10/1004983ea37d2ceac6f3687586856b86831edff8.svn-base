@@ -1,0 +1,39 @@
+package com.ht.service.impl;
+
+import com.ht.bean.zbgj;
+import com.ht.dao.InvestDao;
+import com.ht.service.IInvestServic;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @ClassName:
+ * @Description:
+ * @author:
+ * @version:
+ * @Date:
+ */
+@Service
+public class InvestServiceImpl implements IInvestServic {
+    @Autowired
+    private InvestDao investDao;
+
+    public List<zbgj> selezbgj(Integer types) {
+
+        return investDao.selezbgj(types);
+    }
+
+    @Override
+    public Map selezbgjson(Integer id) {
+        return investDao.selzbgjson(id);
+    }
+
+    @Override
+    public List selezbgjs(Integer s) {
+        return investDao.selzbgjs(s);
+    }
+}
+

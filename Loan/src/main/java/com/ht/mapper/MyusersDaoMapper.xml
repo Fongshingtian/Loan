@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.MyusersDao">
+    <select id="selall" resultType="myusers">
+        <![CDATA[
+          select * from myusers limit #{start},#{limit}
+        ]]>
+    </select>
+
+    <select id="selrows" resultType="integer">
+        <![CDATA[
+          select count(*) from myusers
+        ]]>
+    </select>
+
+    <delete id="delbyid" parameterType="integer">
+        <![CDATA[
+          delete from myusers where uid=#{uid}
+        ]]>
+    </delete>
+
+    <select id="selAll" resultType="discounts">
+        <![CDATA[
+          select * from discounts limit #{start},#{total}
+        ]]>
+    </select>
+
+    <select id="selRows" resultType="integer">
+        <![CDATA[
+          select count(*) from discounts
+        ]]>
+    </select>
+
+    <insert id="addyb" parameterType="discounts">
+        <![CDATA[
+          insert into discounts values (#{did},#{money},#{timestart},#{timeover},#{ussing},#{text},#{source},#{hydj})
+        ]]>
+    </insert>
+
+    <select id="selbydid" resultType="discounts" parameterType="integer">
+        <![CDATA[
+          select * from discounts where did=#{did}
+        ]]>
+    </select>
+
+    <update id="updateyhj" parameterType="discounts">
+        <![CDATA[
+          update discounts set money=#{discounts.money},timestart=#{discounts.timestart},timeover=#{discounts.timeover},ussing=#{discounts.ussing},text=#{discounts.text},source=#{discounts.source},hydj=#{discounts.hydj} where did=#{discounts.did}
+        ]]>
+    </update>
+
+    <delete id="delbyId" parameterType="integer">
+        <![CDATA[
+          delete from discounts where did=#{did}
+        ]]>
+    </delete>
+
+    <select id="selurgent" resultType="urgentusers">
+        <![CDATA[
+          select * from urgentusers limit #{start},#{total}
+        ]]>
+    </select>
+
+    <select id="Urgentrows" resultType="integer">
+        <![CDATA[
+          select count(*) from  urgentusers
+        ]]>
+    </select>
+
+    <select id="selaccounts" resultType="accounts">
+        <![CDATA[
+          select * from accounts limit #{start},#{total}
+        ]]>
+    </select>
+
+    <select id="accountsRows" resultType="integer">
+        <![CDATA[
+          select count(*) from accounts
+        ]]>
+    </select>
+    
+    <select id="selrecord" resultType="record">
+        <![CDATA[
+          select * from record limit #{start},#{total}
+        ]]>
+    </select>
+
+    <select id="recordCount" resultType="integer">
+         <![CDATA[
+          select count(*) from record
+        ]]>
+    </select>
+
+    <select id="selintegral" resultType="integral">
+        <![CDATA[
+          select * from integral limit #{start},#{total}
+        ]]>
+    </select>
+
+    <select id="integralcount" resultType="integer">
+         <![CDATA[
+          select count(*) from integral
+        ]]>
+    </select>
+
+    <select id="selyhk" resultType="real_name">
+        <![CDATA[
+          select * from real_name limit #{start},#{total}
+        ]]>
+    </select>
+
+    <select id="yhktotal" resultType="integer">
+        <![CDATA[
+          select count(*) from real_name
+        ]]>
+    </select>
+
+    <insert id="addyhk" parameterType="real_name">
+        <![CDATA[
+          insert into real_name values (#{rid},#{uid},#{realname},#{idcard},#{idpwd},#{bankcard},#{bankname},#{bankphone})
+        ]]>
+    </insert>
+
+    <select id="selbyrid" parameterType="integer">
+        <![CDATA[
+          select * from real_name where rid=#{rid}
+        ]]>
+    </select>
+
+    <update id="updatayhk" parameterType="real_name">
+        <![CDATA[
+          update real_name set uid=#{uid},realname=#{realname},idcard=#{idcard},idpwd=#{idpwd},bankcard=#{bankcard},bankname=#{bankname},bankphone=#{bankphone} where rid=#{rid}
+        ]]>
+    </update>
+
+    <delete id="deleteyhk" parameterType="integer">
+        <![CDATA[
+          delete from real_name where rid=#{rid}
+        ]]>
+    </delete>
+
+    <select id="selmessage" resultType="messge">
+        <![CDATA[
+          select * from messge limit #{start},#{total}
+        ]]>
+    </select>
+
+    <select id="messgeCount" resultType="integer">
+        <![CDATA[
+          select count(*) from messge
+        ]]>
+    </select>
+
+    <insert id="addmessge" parameterType="messge">
+        <![CDATA[
+           insert into  messge(mid,uid,mstate,title,text,sendtime) values (#{messge.mid},#{messge.uid},#{messge.mstate},#{messge.title},#{messge.text},#{messge.sendtime})
+        ]]>
+    </insert>
+
+    <select id="selbymid" parameterType="integer" resultType="messge">
+        <![CDATA[
+          select * from messge where mid=#{mid}
+        ]]>
+
+    </select>
+
+    <update id="updatamessge" parameterType="messge">
+        <![CDATA[
+          update messge set uid=#{messge.uid},mstate=#{messge.mstate},title=#{messge.title},text=#{messge.text},sendtime=#{messge.sendtime} where mid=#{messge.mid}
+        ]]>
+    </update>
+
+    <delete id="deletemessge" parameterType="integer">
+        <![CDATA[
+          delete from messge where mid=#{mid}
+        ]]>
+    </delete>
+
+    <select id="selfriend" resultType="friend">
+        <![CDATA[
+          select * from friend limit #{start},#{total}
+        ]]>
+    </select>
+
+    <select id="ftotalRows" resultType="integer">
+        <![CDATA[
+          select count(*) from friend
+        ]]>
+
+    </select>
+
+    <select id="selzqjl" resultType="friendget">
+        <![CDATA[
+          select * from friendget limit #{start},#{total}
+        ]]>
+    </select>
+
+    <select id="zqjlrows" resultType="integer">
+         <![CDATA[
+          select count(*) from friendget
+        ]]>
+    </select>
+
+    <select id="selmiddle" resultType="middlecount">
+         <![CDATA[
+          select * from middlecount limit #{start},#{total}
+        ]]>
+    </select>
+
+    <select id="middletotal" resultType="integer">
+         <![CDATA[
+          select count(*) from middlecount
+        ]]>
+    </select>
+</mapper>

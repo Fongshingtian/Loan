@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.AccountDao">
+   <insert id="addmyusers" parameterType="myusers" useGeneratedKeys="true" keyProperty="uid" keyColumn="uid">
+        <![CDATA[
+             INSERT INTO  myusers VALUES (NULL,#{uname},#{phone},#{loginpwd},#{zcdata},#{realname},#{email},#{urgentstate},#{mycode},#{tjrcode},#{point},#{growthValue});
+         ]]>
+   </insert>
+    <select id="selphone" resultType="myusers">
+         <![CDATA[
+             select phone from  myusers
+         ]]>
+    </select>
+    <insert id="addaccounts" parameterType="accounts">
+        <![CDATA[
+             insert into accounts values (null,#{uid},#{countmoney},#{countbj},#{countlx},#{djmoney},#{countsy},#{invitedsy},#{qtsy},#{kyye});
+         ]]>
+    </insert>
+    <select id="loginsel" resultType="myusers">
+        <![CDATA[
+             select * from  myusers where phone=#{phone} and loginpwd=#{loginpwd}
+         ]]>
+    </select>
+
+    <select id="seluserbyid" resultType="myusers" parameterType="Integer">
+         <![CDATA[
+             select * from  myusers where uid=#{uid}
+         ]]>
+    </select>
+    <select id="selaccountbyuid" resultType="accounts" parameterType="Integer">
+         <![CDATA[
+             select * from  accounts where uid=#{uid}
+         ]]>
+    </select>
+    <select id="selrealbyuid" resultType="real_name" parameterType="Integer">
+         <![CDATA[
+             select * from  real_name where uid=#{uid}
+         ]]>
+    </select>
+    <select id="selpoint" resultType="integral" parameterType="Integer">
+        <![CDATA[
+             select * from  integral where uid=#{uid}
+         ]]>
+    </select>
+    <select id="selpointtwo" resultType="integral" >
+        <![CDATA[
+             select * from  integral
+         ]]>
+        <where>
+            <if test="begintime!=null and begintime!=''">
+                and times>#{begintime}
+            </if>
+            <if test="endtime!=null and endtime!=''">
+                and times &lt; #{endtime}
+            </if>
+            <if test="uid!=null and uid!=''">
+                and uid=#{uid}
+            </if>
+        </where>
+    </select>
+    <select id="selpointthree" resultType="integral">
+        <![CDATA[
+             select * from  integral
+         ]]>
+        <where>
+            <if test="begintime!=null and begintime!=''">
+                and times>#{begintime}
+            </if>
+            <if test="endtime!=null and endtime!=''">
+                and times &lt; {endtime}
+            </if>
+            <if test="uid!=null and uid!=''">
+                and uid=#{uid}
+            </if>
+            <if test="changetype!=null and changetype!=''">
+                and jystate=#{changetype}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addpoint" parameterType="integral">
+        insert into integral values (null,#{uid},#{times},#{jfz},#{jystate},#{jytype})
+    </insert>
+    <select id="selpointscount" parameterType="Integer" resultType="Integer">
+         <![CDATA[
+             select SUM(jfz) from  integral where jystate=2 and uid=#{uid}
+         ]]>
+    </select>
+    <select id="selpointsmonth" resultType="Integer">
+          <![CDATA[
+            select SUM(jfz) from (SELECT *from integral WHERE times LIKE concat(#{date1},'%')) b where b.uid=#{uid} AND b.jystate=2
+         ]]>
+    </select>
+    <select id="selcodemy" resultType="myusers" >
+        <![CDATA[
+             select mycode from  myusers where uid!=#{uid}
+         ]]>
+    </select>
+    <update id="updmycode">
+        <![CDATA[
+             update myusers set tjrcode=#{code} where uid=#{uid}
+         ]]>
+    </update>
+    <select id="selmycode" resultType="myusers">
+        <![CDATA[
+             select * from  myusers where mycode=#{code}
+         ]]>
+    </select>
+
+    <insert id="addfriend" parameterType="friend">
+         <![CDATA[
+               insert into friend values (null,#{myuid},#{uid},#{friendphone},#{realname},#{zctime},#{resouce});
+         ]]>
+    </insert>
+
+    <insert id="authentication" parameterType="real_name">
+        insert into real_name values (null,#{r.uid},#{r.realname},#{r.idcard},
+                              #{r.idpwd},#{r.bankcard},#{r.bankname},#{r.bankphone})
+    </insert>
+
+    <update id="updSomething"  parameterType="string">
+          update ${tableName} set ${columnAValue} where ${requirement}
+    </update>
+
+    <insert id="insertTask" parameterType="integer">
+        insert into task values (null,#{id},0,0,0,0,0,0,0,0,0,0)
+    </insert>
+    <update id="updidpwd" >
+        <![CDATA[
+           update real_name set idpwd=#{idpwd} where uid=#{uid}
+         ]]>
+    </update>
+    <select id="selrecord" resultType="record" >
+         <![CDATA[
+          select * from record where uid=#{uid}
+         ]]>
+    </select>
+    <select id="selrecordbypage" resultType="record">
+        <![CDATA[
+              select * from record where uid=#{uid} limit #{beginIndex} ,#{pageCount}
+         ]]>
+    </select>
+    <select id="selrecordbypageandtype" resultType="record">
+         <![CDATA[
+              select * from record
+         ]]>
+        <where>
+            <if test="starttime!=null and starttime!=''">
+                and rtime>#{starttime}
+            </if>
+            <if test="endtime!=null and endtime!=''">
+                and rtime &lt; #{endtime}
+            </if>
+            <if test="uid!=null and uid!=''">
+                and uid=#{uid}
+            </if>
+            <if test="rtype!=null and rtype!=''">
+                and rtype=#{rtype}
+            </if>
+        </where>
+        limit #{beginIndex} ,#{pageCount}
+    </select>
+    <select id="selrecordbypageandtime" resultType="record">
+        <![CDATA[
+              select * from record
+         ]]>
+        <where>
+            <if test="starttime!=null and starttime!=''">
+                and rtime>#{starttime}
+            </if>
+            <if test="endtime!=null and endtime!=''">
+                and rtime &lt; #{endtime}
+            </if>
+            <if test="uid!=null and uid!=''">
+                and uid=#{uid}
+            </if>
+        </where>
+        limit #{beginIndex} ,#{pageCount}
+    </select>
+
+
+    <select id="selSomething" resultType="map" parameterType="String">
+        <![CDATA[
+             select * from  ${tableName} where ${requirement}
+         ]]>
+    </select>
+
+    <insert id="insertSomething" parameterType="String">
+        insert into ${tableName} values (${values})
+    </insert>
+    <select id="selectbyuserid" resultType="mytb">
+
+        select  * from mytb where  uid=#{uid}
+    </select>
+
+    <update id="updatemybt" >
+        update  mybt set status=#{status} where bid=#{id}
+
+    </update>
+    <select id="selemytbyid" resultType="mytb">
+
+        select * from  mytb where bid=#{id}
+    </select>
+
+    <select id="selelscont" resultType="Integer">
+
+        select  count(*)from ls where zid=#{zid}
+    </select>
+    <insert id="addmessage" parameterType="messge">
+         <![CDATA[
+             insert into messge values (null,#{uid},#{mstate},#{title},#{text},#{sendtime});
+         ]]>
+    </insert>
+
+    <update id="updacc">
+         <![CDATA[
+           update accounts set countmoney=#{countmoney},kyye=#{kyye} where uid=#{uid}
+         ]]>
+    </update>
+
+    <insert id="addrecord" parameterType="record">
+        <![CDATA[
+             insert into record values (null,#{uid},#{rtime},#{rtype},#{rmoney},#{kyye},#{bzxx});
+         ]]>
+    </insert>
+    <select id="seltimebefore" resultType="String">
+        <![CDATA[
+            select DATE_ADD(current_timestamp(),interval -3 month)
+         ]]>
+    </select>
+
+    <select id="selmessgelist" resultType="messge">
+          <![CDATA[
+            select * from messge where uid=#{uid} and sendtime>#{times}
+         ]]>
+    </select>
+
+    <select id="selmessgelistbypage" resultType="messge">
+         <![CDATA[
+            select * from messge where uid=#{uid} and sendtime>#{times}  limit #{beginIndex} ,#{pageCount}
+         ]]>
+    </select>
+    <update id="updmesgmsatte">
+         <![CDATA[
+           update messge set mstate=#{mstate} where mid=#{mid}
+         ]]>
+    </update>
+
+    <delete id="dellmesg">
+         <![CDATA[
+           delete from messge where mid in(#{ids})
+         ]]>
+    </delete>
+    <update id="updstateall">
+         <![CDATA[
+           update messge set mstate=#{state} where mid in(#{ids})
+         ]]>
+    </update>
+
+    <select id="selfiriend" resultType="friend">
+        <![CDATA[
+           select * from friend where myuid=#{myuid}
+         ]]>
+    </select>
+    <select id="selezbgj"  resultType="map">
+        <![CDATA[
+             select * from  zbgj z ,zbgjson l where z.zid =l.zid and z.types=#{types}  order by l.sid desc limit 3
+         ]]>
+    </select>
+</mapper>

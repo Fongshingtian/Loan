@@ -1,0 +1,31 @@
+.div11 {
+    width: 14px;
+    height: 210px;
+    overflow: hidden;
+    float: left;
+}
+.div12 {
+    position: relative;
+    top:10px;
+    height: 210px;float:left;
+}
+.div13 {
+    position: relative;
+    display:flex;
+    width: 250px;
+    height: 208px;
+    overflow: hidden;
+    float: left;
+    border: 1px solid #cecece;
+    text-align: center;
+    align-items: center;
+}
+
+.div13 img:hover {
+    cursor: pointer;
+    transition: all 0.6s;
+    transform: scale(1.1);
+}
+.imgdiv13 {
+    position: relative;left:14px;
+}

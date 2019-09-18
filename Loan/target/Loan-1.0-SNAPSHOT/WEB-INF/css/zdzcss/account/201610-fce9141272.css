@@ -1,0 +1,613 @@
+@charset "utf-8";
+.e-signature .submit, .form-btn, .form-btn:hover, .form-check a, .ie-update a.close, .ie-update a.link:hover, .login-form p.login-remember a, .login-form p.login-title a, .login-gg-link a, .login-main-bottom, .login-main-bottom:hover, .user-head-info a {
+    text-decoration: none;
+}
+
+.login-gg, .login-gg-link, .logo, .user-logo {
+    overflow: hidden;
+}
+
+.ie-update a.close, .ie-update a.link {
+    background: url("//image.xiaoniu88.com/static/WebXn/dist/module/ie-update/img/ie-b4e7bf5062.png") no-repeat;
+}
+
+.ie-update {
+    display: none;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    background: #fef4b9;
+    border: 1px solid #fdd308;
+    text-align: center;
+    font-size: 14px;
+    color: #834f10;
+    vertical-align: middle;
+    position: relative;
+}
+
+.ie-update a.link {
+    width: 173px;
+    margin-left: 15px;
+    height: 30px;
+    color: #30c76c;
+    line-height: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 3px;
+    background-position: 0 0;
+}
+
+.ie-update a.link:hover {
+    background-position: 0 -33px;
+    color: #16994a;
+}
+
+.ie-update span {
+    display: inline-block;
+    background: url("//image.xiaoniu88.com/static/WebXn/dist/module/ie-update/img/ie-icon-431a9295f6.png") left top no-repeat;
+    padding-left: 58px;
+    font-weight: 700;
+}
+
+.ie-update a.close {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-position: 0 -68px;
+    position: absolute;
+    right: 18px;
+    top: 12px;
+}
+
+.ie-update a.close:hover {
+    background-position: -26px -68px;
+}
+
+.g-min1170 {
+    min-width: 1170px;
+}
+
+.g-container {
+    width: 1170px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.logo {
+    width: 315px;
+    height: 60px;
+    margin-top: 20px;
+    font-size: 0;
+    display: block;
+    float: left;
+}
+
+.user-head {
+    height: 108px;
+    width: 100%;
+}
+
+.user-head-info {
+    position: absolute;
+    right: 0;
+    bottom: 17px;
+    font-size: 16px;
+    color: #999;
+}
+
+.user-head-info a {
+    color: #333;
+    margin-left: 5px;
+}
+
+.user-head-info a:hover {
+    color: #eb6100;
+}
+
+.user-logo, .user-logo p {
+    float: left;
+    position: relative;
+}
+
+.user-logo {
+    width: 500px;
+    height: 108px;
+}
+
+.user-logo a.logo {
+    display: block;
+    width: 340px;
+    margin-top: 23px;
+}
+
+.user-logo p {
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    border-left: #dcdcdc solid 1px;
+    font-size: 16px;
+    color: #000;
+    padding-left: 21px;
+    top: 47px;
+    width :80px;
+
+}
+
+.user-foot {
+    padding: 30px 0;
+}
+
+.user-foot p {
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+.form-item input, .form-item label {
+    height: 44px;
+    line-height: 44px;
+    float: left;
+}
+
+.form-item {
+    height: 44px;
+    position: relative;
+    box-shadow: 0 0 1px #dcdcdc inset;
+    -webkit-box-shadow: 0 0 1px #dcdcdc inset;
+    border: 1px solid #dcdcdc;
+    margin-top: 20px;
+}
+
+.form-item input {
+    display: block;
+    border: none;
+    width: 300px;
+    padding-left: 10px;
+    font-size: 14px;
+    outline: 0;
+    color: #333;
+    background: 0 0;
+}
+
+.form-item input:-ms-input-placeholder {
+    color: #aaa;
+}
+
+.form-item input.placeholder {
+    color: #aaa;
+}
+
+.form-item input::-ms-clear, .form-item input::-ms-reveal {
+    display: none;
+}
+
+.form-item .clear, .form-item .ok {
+    width: 44px;
+    height: 44px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.form-item .clear {
+    background: url("//image.xiaoniu88.com/static/WebXn/dist/images/icon/user_icons-2820177e1d.png") 18px -285px no-repeat #fff;
+    display: none;
+    z-index: 9998;
+}
+
+.form-item .ok {
+    display: block;
+    background: url("//image.xiaoniu88.com/static/WebXn/dist/images/icon/ok-8b86af1899.png") center center no-repeat #fff;
+    z-index: 9999;
+}
+
+.form-item.error .ok {
+    display: none !important;
+}
+
+.form-item .clear-show {
+    display: block;
+}
+
+.form-item .clear-show:hover {
+    background-position: 18px -335px;
+}
+
+.form-item label {
+    display: block;
+    width: 44px;
+    border-right: #dcdcdc solid 1px;
+    background: url("//image.xiaoniu88.com/static/WebXn/dist/images/icon/user_icons-2820177e1d.png") left top no-repeat;
+}
+
+.form-mobilecode label {
+    background: 0 0;
+    width: 80px;
+    text-align: center;
+    border: none;
+}
+
+.form-mobilecode input {
+    width: 150px;
+    float: left;
+}
+
+.form-mobilecode-btn {
+    display: block;
+    border: none;
+    background: #eb6100;
+    color: #fff;
+    height: 40px;
+    margin: 2px;
+    width: 135px;
+    outline: 0;
+    float: right;
+}
+
+.form-mobilecode-btn.disabled {
+    background: #f0f0f0;
+    color: #999;
+}
+
+.form-imgcode {
+    width: 230px;
+}
+
+.form-imgcode input {
+    width: 227px;
+    position: absolute;
+    left: 0;
+}
+
+.form-imgcode img {
+    position: absolute;
+    right: -120px;
+    top: -1px;
+    height: 46px;
+    width: auto;
+    cursor: pointer;
+}
+
+.form-check {
+    padding: 10px 0;
+    line-height: 30px;
+    margin-top: 15px;
+}
+
+.form-check input {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.form-check a {
+    color: #0084ff;
+}
+
+.form-check a:hover {
+    color: #eb6100;
+}
+
+.form-item.active {
+    box-shadow: 0 0 1px #9ed4ee inset;
+    -webkit-box-shadow: 0 0 1px #9ed4ee inset;
+    border: 1px solid #1798d7;
+}
+
+.form-item.active label {
+    border-right: #1798d7 solid 1px;
+}
+
+.form-item .input-safe {
+    background: url("//image.xiaoniu88.com/static/WebXn/dist/images/icon/password_safety-0b3e6428db.png") left top no-repeat;
+}
+
+.form-item .input-safe-0 {
+    background-position: 0 -60px;
+}
+
+.form-item .input-safe-1 {
+    background-position: 0 -29px;
+}
+
+.form-item .input-safe-2 {
+    background-position: 0 3px;
+}
+
+.form-item .input-msg {
+    display: none;
+}
+
+.form-item.error {
+    box-shadow: 0 0 1px #5ceb61 inset;
+    -webkit-box-shadow: 0 0 1px #9ed4ee inset;
+    border: 1px solid #eb6100;
+}
+
+.form-msg {
+    text-align: left;
+    padding: 10px 0 5px 20px;
+}
+
+.form-error, .form-item.error .input-msg, .form-msg {
+    line-height: 25px;
+    color: #eb6100;
+    font-size: 12px;
+    zoom: 1;
+    clear: both;
+}
+
+.form-error {
+    background: 0 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.form-error b, .form-item.error .input-msg b, .form-msg b {
+    font-weight: 700;
+    padding: 0 3px;
+}
+
+.form-msg.msg-show {
+    background: url("//image.xiaoniu88.com/static/WebXn/dist/images/icon/user_icons-2820177e1d.png") left -235px no-repeat;
+}
+
+.form-item.error .input-msg, .input-tip {
+    position: relative;
+    top: 4px;
+    padding: 0 0 0 20px;
+}
+
+.form-item.error .input-msg {
+    text-align: left;
+    display: block;
+    width: 100%;
+    background: url("//image.xiaoniu88.com/static/WebXn/dist/images/icon/user_icons-2820177e1d.png") left -245px no-repeat;
+}
+
+.form-btn, .input-tip {
+    width: 100%;
+    display: block;
+}
+
+.input-tip {
+    height: 25px;
+    line-height: 25px;
+    zoom: 1;
+    clear: both;
+    background: url("//image.xiaoniu88.com/static/WebXn/dist/images/icon/user_icons-2820177e1d.png") left -495px no-repeat;
+    text-align: left;
+    font-size: 12px;
+    color: #ccc;
+}
+
+.input-tip i {
+    font-style: normal;
+    color: #ef7a46;
+}
+
+.form-btn {
+    background: #ef7a46;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    padding: 8px 0;
+    margin: 20px auto;
+    outline: 0;
+    text-align: center;
+}
+
+.form-btn.disabled {
+    background: #aaa;
+    color: #ccc;
+}
+
+.form-item-info {
+    border: none;
+    box-shadow: none;
+    margin-top: 10px;
+    height: auto;
+    line-height: 30px;
+}
+
+.form-item-info p {
+    display: block;
+    padding-top: 7px;
+    line-height: 30px;
+}
+
+.e-signature {
+    padding: 20px 50px;
+    text-align: center;
+}
+
+.e-signature.result {
+    padding: 50px;
+}
+
+.e-signature p {
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.e-signature .protocol {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.e-signature .protocol a {
+    color: #0084ff;
+    text-decoration: none;
+}
+
+.e-signature .submit {
+    display: inline-block;
+    width: 124px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    color: #fff;
+    background: #ff7136;
+    border-radius: 5px;
+    margin: 0 auto;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.login-content, .login-gg, .login-gg ul, .login-gg ul li {
+    width: 100%;
+    height: 556px;
+}
+
+.e-signature .submit:hover {
+    background: #d94f00;
+}
+
+.ZebraDialog.eSignature .ZebraDialog_BodyOuter {
+    border-radius: 0 0 10px 10px !important;
+}
+
+.login-content {
+    background-color: #f4f7f9;
+    position: relative;
+}
+
+.login-gg, .login-gg ul, .login-gg-link {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.login-gg ul {
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-gg ul li {
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.login-gg-link {
+    display: block;
+    height: 100%;
+    width: 735px;
+}
+
+.login-gg-link a {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.login-main {
+    width: 410px;
+    position: absolute;
+    top: 63px;
+    right: 20px;
+    background: #fff;
+}
+
+.login-main-bottom {
+    display: block;
+    background: #f1f1f1;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+    color: #ff5c5c;
+    padding: 0 25px;
+    text-align: center;
+}
+
+.login-form {
+    margin: 25px 25px 40px;
+    _margin: 10px 10px 15px;
+}
+
+.login-form p {
+    font-size: 12px;
+    color: #666;
+}
+
+.login-form p.login-title {
+    font-size: 16px;
+    color: #333;
+}
+
+.login-form p.login-title a {
+    background: url("//image.xiaoniu88.com/static/WebXn/dist/images/icon/user_icons-2820177e1d.png") left -194px no-repeat;
+    padding: 0 0 0 25px;
+    float: right;
+    color: #eb6100;
+}
+
+.login-form p.login-remember a {
+    float: right;
+    color: #666;
+}
+
+.login-form p.login-remember a:hover {
+    text-decoration: underline;
+    color: #ff5c5c;
+}
+
+.login-form p.login-remember input {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.login-form p.login-hezuo {
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.login-form p.login-hezuo span {
+    float: left;
+}
+
+.login-form p.login-hezuo a.qq {
+    background: url("//image.xiaoniu88.com/static/WebXn/dist/images/icon/qq-d894855efb.png") left top no-repeat;
+    width: 26px;
+    height: 26px;
+    display: inline-block;
+    overflow: hidden;
+    font-size: 0;
+    text-indent: 200px;
+}
+
+.login-form p.login-hezuo a.qq:hover {
+    background-position: 0 -36px;
+}
+
+.login-username.active label {
+    background-position: 15px -38px;
+    background-color: #e7f4fb;
+}
+
+.login-password.active label {
+    background-position: 15px -136px;
+    background-color: #e7f4fb;
+}
+
+.login-username label {
+    background-position: 15px 12px;
+}
+
+.login-password label {
+    background-position: 15px -86px;
+}
+
+.login-password.error label, .login-username.error label {
+    border-right: #eb6100 solid 1px;
+    background-position: 15px -387px;
+}
+
+.login-password.error label {
+    background-position: 15px -436px;
+}

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.InvestDao">
+
+
+    <select id="selezbgj"  resultType="map">
+        <![CDATA[
+             select * from  zbgj z ,zbgjson l where z.zid =l.zid and z.types=#{types}  order by l.sid desc limit 5
+         ]]>
+    </select>
+    <select id="selzbgjson"  resultType="map">
+        <![CDATA[
+        select * from  zbgj z ,zbgjson s where z.zid = s.zid and s.sid= #{id}
+        ]]>
+    </select>
+    <select id="selzbgjs"  resultType="map">
+        <![CDATA[
+        select * from  zbgj z ,zbgjson s where z.zid = s.zid and z.zid= #{id}
+        ]]>
+    </select>
+    <select id="buybyuid"  resultType="real_name">
+        <![CDATA[
+        select * from  real_name  where uid = #{suid} and idpwd = #{password}
+        ]]>
+    </select>
+    <select id="selbyuid"  resultType="accounts">
+        <![CDATA[
+        select * from  accounts  where uid = #{uid}
+        ]]>
+    </select>
+    <update id="updaccounts" parameterType="accounts">
+        <![CDATA[
+          update accounts set countmoney =#{countmoney},countbj=#{countbj},countlx=#{countlx},djmoney=#{djmoney},countsy=#{countsy},kyye=#{kyye} where uid=#{uid}
+        ]]>
+    </update>
+    <update id="updzbgjson" parameterType="zbgjson">
+        <![CDATA[
+        update zbgjson set amount =#{money} where sid=#{sid}
+        ]]>
+    </update>
+    <select id="selzbgjsons"  resultType="zbgjson">
+        <![CDATA[
+        select * from  zbgjson where sid= #{id}
+        ]]>
+    </select>
+
+    <insert id="updls" parameterType="ls">
+        <![CDATA[
+        insert  into  ls values (null,#{zid},#{uid},#{uname},#{money},#{times})
+        ]]>
+    </insert>
+
+    <select id="sells"  resultType="ls">
+        <![CDATA[
+        select * from  ls where zid= #{zid} order by tid desc limit 10
+        ]]>
+    </select>
+
+    <insert id="instmyt" parameterType="mytb">
+        <![CDATA[
+        insert  into  mytb values (null,#{zid},#{uid}, #{interest},#{ckrate}, #{money}, #{periods},#{sjmoney},#{begintime},#{endtime}, #{ status})
+        ]]>
+    </insert>
+    <select id="mytbbyuid"  resultType="Integer">
+        <![CDATA[
+        select count(*) from mytb where uid =#{uid}
+        ]]>
+    </select>
+    <select id="selMytbs"  resultType="mytb">
+        <![CDATA[
+        select * from mytb where status=1
+        ]]>
+    </select>
+    <select id="selmyusers"  resultType="myusers">
+        <![CDATA[
+        select * from myusers where uid =#{uid}
+        ]]>
+    </select>
+    <update id="updmytb" parameterType="mytb">
+        <![CDATA[
+            update mytb set status=#{status} where bid=#{bid}
+        ]]>
+    </update>
+    <insert id="instfriend" parameterType="friendget">
+        <![CDATA[
+        insert  into  friendget values (null,#{yqcoud},#{jltime}, #{jlmoney},#{jltype}, #{jlstate}, #{sendtime})
+        ]]>
+    </insert>
+    <insert id="Instrecord" parameterType="record">
+        <![CDATA[
+        insert  into  record values (null,#{uid},#{rtime},#{rtype},#{rmoney},#{kyye},#{bzxx})
+        ]]>
+    </insert>
+    <select id="selfriendgets"  resultType="friendget">
+        <![CDATA[
+        select * from friendget where jlstate =1
+        ]]>
+    </select>
+    <select id="selmys"  resultType="myusers">
+        <![CDATA[
+        select * from myusers where mycode=#{yqcode}
+        ]]>
+    </select>
+    <update id="updyqacc" parameterType="accounts">
+        <![CDATA[
+    update accounts set countmoney =#{countmoney},kyye=#{kyye},Invitedsy=#{Invitedsy} ,countsy=#{countsy},qtsy=#{qtsy} where uid=#{uid}
+    ]]>
+    </update>
+    <update id="updfriendget" parameterType="friendget">
+        <![CDATA[
+        update friendget set jlstate=#{jlstate} where fid=#{fid}
+        ]]>
+    </update>
+
+    <select id="SelloanS"  resultType="map">
+        <![CDATA[
+        select * from loan l ,product_induce p where l.status=4 and l.productCode=p.pid limit #{start} ,#{cols}
+        ]]>
+    </select>
+    <select id="SelLoanI"  resultType="Integer">
+        <![CDATA[
+        select count(*) from loan where status=4
+        ]]>
+    </select>
+    <select id="SelMx"  resultType="Map">
+        <![CDATA[
+        select * from mx m,loan l where m.mid=l.did and mid=#{did}
+        ]]>
+    </select>
+    <select id="SelHongBao"  resultType="RedEnvelopes">
+        <![CDATA[
+        select * from red_envelopes where statu =1;
+        ]]>
+    </select>
+    <update id="updred" parameterType="RedEnvelopes">
+        <![CDATA[
+        update red_envelopes set statu=2 where id=#{id}
+        ]]>
+    </update>
+    <select id="selscabyid"  resultType="scattered">
+        <![CDATA[
+        select * from scattered where id =#{id};
+        ]]>
+    </select>
+    <update id="updsca" parameterType="scattered">
+        <![CDATA[
+        update scattered set amount=#{amount},money=#{money} where id=#{id}
+        ]]>
+    </update>
+</mapper>

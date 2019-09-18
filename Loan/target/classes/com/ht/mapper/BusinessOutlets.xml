@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.BusinessOutletsDao" >
+    <!--获取营业网点-->
+    <select id="getProvince" resultType="map">
+        <![CDATA[
+          select province, GROUP_CONCAT(city separator ',')city
+          from (select province,city from business_outlets GROUP BY city)p
+          GROUP BY province
+        ]]>
+    </select>
+    <!--搜索版查询列表-->
+    <select id="getOutlets" resultType="businessoutlets">
+        <![CDATA[
+              select * from business_outlets
+            ]]>
+        <where>
+            <if test="1==1">
+               1=1
+            </if>
+            <if test="bo.province !=null and bo.province!=''">
+                and  province=#{bo.province}
+            </if>
+            <if test="bo.city!=null and bo.city!=''">
+                and  city=#{bo.city}
+            </if>
+        </where>
+        order by province limit #{start},#{limit}
+    </select>
+    <!--搜索版查询总条数-->
+    <select id="getOutletsRows" resultType="integer">
+        <![CDATA[
+          select count(*) from business_outlets
+        ]]>
+        <where>
+            <if test="1==1">
+                1=1
+            </if>
+            <if test="bo.province !=null and bo.province!=''">
+                and  province=#{bo.province}
+            </if>
+            <if test="bo.city!=null and bo.city!=''">
+                and  city=#{bo.city}
+            </if>
+        </where>
+    </select>
+    <!--搜索贷款产品种类-->
+    <select id="getProduct" resultType="product_induce">
+        <![CDATA[
+          select * from product_induce
+        ]]>
+    </select>
+    <!--根据id获得营业网点信息-->
+    <select id="getOutletById" resultType="businessoutlets">
+        <![CDATA[
+          select * from business_outlets where id=#{oid}
+        ]]>
+    </select>
+    <!--在线预约添加数据-->
+    <insert id="addOnlineBooking" parameterType="onlineBooking">
+        <![CDATA[
+          insert into online_booking values (null,#{ob.outletId},#{ob.productId},#{ob.time},#{ob.name},#{ob.idCard},#{ob.phone});
+        ]]>
+    </insert>
+    <!--营业网点添加数据-->
+    <insert id="outletAdd" parameterType="businessoutlets">
+        <![CDATA[
+          insert into business_outlets  values (null,#{bo.name},#{bo.province},#{bo.city},#{bo.contactPhone},#{bo.address},#{bo.longitude},#{bo.latitude});
+        ]]>
+    </insert>
+    <!--营业网点修改数据-->
+    <update id="outletUpd" parameterType="businessoutlets">
+        <![CDATA[
+          update business_outlets  set name=#{bo.name},province=#{bo.province},city=#{bo.city},contact_phone=#{bo.contactPhone},address=#{bo.address},longitude=#{bo.longitude},latitude=#{bo.latitude} where id=#{bo.id};
+        ]]>
+    </update>
+    <!--营业网点删除-->
+    <delete id="outletDel" parameterType="integer">
+        <![CDATA[
+          delete from business_outlets where id=#{id}
+        ]]>
+    </delete>
+
+    <!--搜索版查询列表-->
+    <select id="getOnlineBooking" resultType="onlinebooking">
+        <![CDATA[
+              select * from online_booking order by time desc limit #{start},#{limit}
+            ]]>
+    </select>
+    <select id="getOnlineBookingRows" resultType="integer">
+        <![CDATA[
+              select count(*) from online_booking
+            ]]>
+    </select>
+</mapper>

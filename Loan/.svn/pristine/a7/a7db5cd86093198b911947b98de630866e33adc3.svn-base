@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.mmfdao">
+    <select id="getrotation" resultType="rotation">
+        <![CDATA[
+          SELECT * FROM rotation order by id DESC limit 4
+        ]]>
+    </select>
+    <select id="getrotationbyid" resultType="rotation">
+        <![CDATA[
+          SELECT * FROM rotation where id=${id}
+        ]]>
+    </select>
+    <insert id="addtu" parameterType="rotation">
+        insert into rotation value(#{id},#{route})
+    </insert>
+    <update id="updtu" parameterType="rotation">
+        <![CDATA[
+        update rotation set route=#{route} where id=#{id}
+        ]]>
+    </update>
+    <select id="selpro" resultType="product_induce">
+      <![CDATA[
+          select * from product_induce limit 4
+       ]]>
+    </select>
+    <select id="getBusinessOutltts" resultType="java.lang.String">
+      <![CDATA[
+          select  distinct  province from business_outlets
+       ]]>
+    </select>
+    <select id="getBusinessOutlttscity" resultType="java.lang.String">
+      <![CDATA[
+          select  distinct  city from business_outlets where province=#{i}
+       ]]>
+    </select>
+    <select id="getAllGenre" resultType="introduceGenre">
+      <![CDATA[
+          select  * from introduceGenre
+       ]]>
+    </select>
+    <select id="getAllcertificate" resultType="certificate">
+        <![CDATA[
+          SELECT * FROM certificate
+        ]]>
+    </select>
+    <select id="getAllhonor" resultType="honor">
+        <![CDATA[
+          SELECT * FROM honor
+        ]]>
+    </select>
+    <select id="getcooperationbycategory" resultType="cooperation">
+        <![CDATA[
+          SELECT * FROM cooperation where category=#{category}
+        ]]>
+    </select>
+    <select id="getintroducebyid" resultType="introduce">
+        <![CDATA[
+          SELECT * FROM introduce where id=#{id}
+        ]]>
+    </select>
+    <select id="getnewslist" resultType="newslist">
+         <![CDATA[
+            SELECT * FROM newslist  limit #{i},5
+                ]]>
+    </select>
+    <select id="NewList" resultType="int">
+         <![CDATA[
+            SELECT count(*) FROM newslist
+                ]]>
+    </select>
+    <insert id="addcer" parameterType="certificate">
+        insert into certificate value(#{id},#{title},#{images})
+    </insert>
+    <insert id="addhon" parameterType="honor">
+        insert into honor value(#{id},#{title},#{images})
+    </insert>
+    <delete id="delcer">
+        <![CDATA[
+          delete from certificate where id=#{id}
+        ]]>
+    </delete>
+    <delete id="delhon">
+        <![CDATA[
+          delete from honor where id=#{id}
+        ]]>
+    </delete>
+    <update id="updintroduce" parameterType="introduce">
+        <![CDATA[
+        update introduce set content=#{content} where id=#{id}
+        ]]>
+    </update>
+    <delete id="delcoll">
+        <![CDATA[
+          delete from cooperation where id=#{id}
+        ]]>
+    </delete>
+    <insert id="addcoll" parameterType="cooperation">
+        insert into cooperation value(#{id},#{images},#{Route},#{category})
+    </insert>
+    <select id="selezbgj"  resultType="map">
+        <![CDATA[
+             select * from  zbgj z ,zbgjson l where z.zid =l.zid and z.types=#{types}  order by l.sid desc limit 3
+         ]]>
+    </select>
+    <select id="selallinfor"  resultType="information">
+        <![CDATA[
+             select * from  information
+         ]]>
+    </select>
+    <select id="selreport"  resultType="report">
+        <![CDATA[
+             select * from  report
+         ]]>
+    </select>
+    <insert id="addreport" parameterType="report">
+        insert into report value(#{id},#{title},#{images},#{content})
+    </insert>
+    <select id="selreoorts"  resultType="report">
+        <![CDATA[
+             select * from  report where id=#{id}
+         ]]>
+    </select>
+    <select id="selscatered"  resultType="scattered">
+        <![CDATA[
+             select * from  scattered where term>=${mintime} and rate>=${minmoney} and (amount-money)>=${minsy}
+         ]]>
+        <if test="maxtime!=null and maxtime!=0">
+            and term &lt; ${maxtime}
+        </if>
+        <if test="maxmoney!=null and maxmoney!=0">
+            and rate &lt; ${maxmoney}
+        </if>
+        <if test="maxsy!=null and maxsy!=0">
+            and(amount-money) &lt; ${maxsy}
+        </if>
+        <if test="hkfs!=null and hkfs!='' and hkfs!='0'.toString()">
+            and hkfs = #{hkfs}
+        </if>
+        <if test="px!=null  and px!='0'.toString()">
+            order by ${px} desc
+        </if>
+        limit ${i},10
+    </select>
+    <select id="getscattered" resultType="loan">
+         <![CDATA[
+            SELECT * FROM loan where status=6 limit #{i},#{t}
+                ]]>
+    </select>
+    <select id="loanlist" resultType="int">
+         <![CDATA[
+            SELECT count(*) FROM loan where status=6
+                ]]>
+    </select>
+    <select id="selloan" resultType="Loan">
+         <![CDATA[
+            SELECT * FROM loan where did=#{id}
+                ]]>
+    </select>
+    <update id="updloan">
+        <![CDATA[
+        update loan set status=8 where did=#{id};
+        ]]>
+    </update>
+    <select id="selmx" resultType="Mx">
+         <![CDATA[
+            SELECT * FROM Mx where mid=#{idCardNo}
+                ]]>
+    </select>
+    <insert id="insertscattered" parameterType="scattered">
+        insert into scattered value(#{id},#{uid},#{rate},#{term},#{amount},#{money},#{start},#{theory},#{time},#{purpose},#{end},#{Guarantor},#{lid},#{mid},#{hkfs})
+    </insert>
+    <select id="scatteredlist" resultType="int">
+         <![CDATA[
+            SELECT count(*) FROM scattered
+                ]]>
+    </select>
+    <select id="selscatteredbyid" resultType="scattered">
+        <![CDATA[
+          SELECT * FROM scattered where id=#{id} LIMIT 1
+        ]]>
+    </select>
+    <select id="selhkfs" resultType="java.lang.String">
+         <![CDATA[
+            select distinct hkfs from mx
+                ]]>
+    </select>
+    <select id="selscattere" resultType="scattered">
+         <![CDATA[
+            SELECT * FROM scattered  limit 3
+                ]]>
+    </select>
+</mapper>

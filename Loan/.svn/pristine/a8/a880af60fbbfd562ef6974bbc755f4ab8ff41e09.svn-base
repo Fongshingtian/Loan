@@ -1,0 +1,24 @@
+package com.ht.service;
+
+import com.ht.bean.zbgj;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @ClassName:
+ * @Description:
+ * @author:
+ * @version:
+ * @Date:
+ */
+public interface IInvestServic {
+    //查询所有招标工具
+    public List<zbgj> selezbgj( Integer types);
+
+    //查看招标详情
+    public Map selezbgjson(Integer id);
+
+    //查看一个标的所有期数
+    public List selezbgjs(Integer s);
+}

@@ -1,0 +1,85 @@
+package com.ht.controller;
+
+import com.alibaba.fastjson.JSONObject;
+import com.ht.bean.accounts;
+import com.ht.bean.myusers;
+import com.ht.bean.zbgj;
+import com.ht.service.IInvestServic;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @ClassName:
+ * @Description:
+ * @author: lsx
+ * @version:
+ * @Date: 2019 /4 /21
+ */
+@Controller
+@RequestMapping("invest")
+public class InvestController {
+ @Autowired
+ private IInvestServic iInvestServic;
+
+    //去投标界面
+    @RequestMapping("toinvest")
+    public String toinvest(Map map){
+
+        List zbgjList = iInvestServic.selezbgj(1);//查询为您推荐
+        List  yxnlist = iInvestServic.selezbgj(2);//优享牛
+        List  scnlist = iInvestServic.selezbgj(3);//生财牛
+        map.put("zbgjList",zbgjList);
+        map.put("yunlist",yxnlist);
+        map.put("scnlist",scnlist);
+        System.out.println(zbgjList);
+        System.out.println(yxnlist);
+        System.out.println(scnlist);
+       return "invest/Biddingtool";
+     }
+
+     //去投标（期数详情界面）
+    @RequestMapping("/selinvestbyid/{id}")
+    public String selinvestbyid(@PathVariable("id") Integer id , Map map, HttpSession session){
+        System.out.println(id);
+        Map ma = iInvestServic.selezbgjson(id);//期数详情
+           Integer s = (Integer) ma.get("zid");
+        System.out.println(s+"s");
+        List list = iInvestServic.selezbgjs(s);//查询一个标下的所有期数
+        map.put("all",ma);
+        map.put("list",list);
+        System.out.println(ma);
+        accounts acc = new accounts();
+        acc.setAid(1);
+        acc.setUid(1);
+        acc.setKyye(1000);
+        session.setAttribute("user",acc);
+        return "invest/Biddingdetails";
+    }
+
+    //json加载期数详情
+    @RequestMapping("/jsbidding")
+    @ResponseBody
+    public JSONObject jsbidding(Integer sid ){
+        System.out.println(sid+"返回值");
+        Map ma = iInvestServic.selezbgjson(sid);//期数详情
+        System.out.println(ma);
+        JSONObject json = new JSONObject();
+        json.put("ms",ma);
+        return json;
+    }
+    //计算收益
+    @RequestMapping("/selinterest")
+    @ResponseBody
+    public JSONObject selinterest(String interest){
+        System.out.println(interest + "5.00%");
+        JSONObject js = new JSONObject();
+        return js;
+    }
+}

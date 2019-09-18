@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+.mdiv8 {
+	display:block;color:#333;cursor:pointer;width:1170px;float:left;
+	border-top:1px dashed #c2c2c2;
+	border-bottom:1px dashed #c2c2c2;
+}
+.mdiv8:hover {
+	border-bottom:2px solid #c2c2c2;
+}
+
+.mcd {
+	height: 28px;
+}
+.mdb {
+	display:block;
+}
+.mdl-1 {
+	float:left;width:16%;
+}
+
+
+
+.micon {
+	vertical-align: middle;
+	margin-top: -7px;
+	padding: 0 6px;
+	color: #86b6dd;
+	height: 13px;
+	line-height: 14px;
+	border: 1px solid #86b6dd;
+	display: inline-block;
+	border-radius: 11px;
+	font-size: 12px;
+	vertical-align: inherit;
+	font-style: normal;
+	margin-right: 5px;
+	cursor: default;
+}
+.mdiv8 dl{
+	position: relative;
+	left:20px;
+}
+.mdiv8 dd{
+	height: 25px;
+	color: #999;
+	font-size: 14px;
+}

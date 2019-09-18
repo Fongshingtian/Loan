@@ -1,0 +1,1 @@
+!function(a){a(".wrap-left-nav-main>ul>li").each(function(){a(this).click(function(){0!=a(this).index()&&(a(".wrap-left-nav-main ul li").removeClass("current"),a(this).addClass("current"),a(".wrap-left-nav-mask").hide(),a(this).find(".wrap-left-nav-mask").show())})})}($);

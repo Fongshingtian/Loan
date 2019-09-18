@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.VipCenterDao" >
+    <select id="getPointMall" resultType="pointmall">
+        <![CDATA[
+              select * from point_mall order by stock desc limit #{start},#{limit}
+            ]]>
+    </select>
+    <select id="rows" resultType="int">
+        <![CDATA[
+              select count(*) from point_mall
+            ]]>
+    </select>
+    <select id="getPointMallById" resultType="pointmall">
+        <![CDATA[
+              select * from point_mall where id=#{id}
+            ]]>
+    </select>
+    <select id="getTaskByUser" resultType="task">
+        <![CDATA[
+              select * from task where user_id=#{user.uid}
+            ]]>
+    </select>
+
+    <select id="getGrowthValueByUser" resultType="growthvalue">
+        <![CDATA[
+              select * from growth_value where user_id=#{userId} order by time desc limit #{start},#{limit}
+            ]]>
+    </select>
+    <select id="getGrowthValueByUserRows" resultType="int">
+        <![CDATA[
+              select count(*) from growth_value where user_id=#{userId}
+            ]]>
+    </select>
+    <insert id="exchangeAdd" parameterType="mallexchange">
+        <![CDATA[
+              insert into mall_exchange values(null,#{e.userId},#{e.mallId},#{e.time},#{e.address},#{e.consignee},#{e.phone})
+            ]]>
+    </insert>
+    <update id="updUserPoint" parameterType="int">
+          <![CDATA[
+              update myusers set point=point-(select point from point_mall where id=#{mid}) where uid=#{uid}
+            ]]>
+    </update>
+    <update id="updMallStock" parameterType="int">
+          <![CDATA[
+              update point_mall set stock=stock-1 where id=#{mid}
+            ]]>
+    </update>
+    <insert id="insertIntegral" parameterType="integral">
+        <![CDATA[
+              insert into integral values(null,#{i.uid},#{i.times},#{i.jfz},#{i.jystate},#{i.jytype})
+            ]]>
+    </insert>
+
+    <insert id="addGrowthValue" parameterType="growthvalue">
+        <![CDATA[
+              insert into growth_value values(null,#{g.userId},#{g.time},#{g.type},#{g.value})
+            ]]>
+    </insert>
+    <update id="updGrowthValueByUser" >
+        <![CDATA[
+              update myusers set growth_value=growth_value+#{value} where uid=#{u.uid}
+            ]]>
+    </update>
+    <update id="updTask" parameterType="task">
+          <![CDATA[
+              update task set bind_phone=#{t.bindPhone},authentication=#{t.authentication},
+              bind_bank_card=#{t.bindBankCard},first_recharge_1h=#{t.firstRecharge1h},
+              first_bid=#{t.firstBid},first_bid_3t=#{t.firstBid3t},
+              first_month_bid_5t=#{t.firstMonthBid5t},first_month_bid_10t=#{t.firstMonthBid10t},
+              first_month_bid_30t=#{t.firstMonthBid30t},first_month_bid_50t=#{t.firstMonthBid50t} where user_id=#{t.userId}
+            ]]>
+    </update>
+    <update id="resetUserMonthlyTask">
+         <![CDATA[
+              update task set  first_month_bid_5t=0,first_month_bid_10t=0,
+              first_month_bid_30t=0,first_month_bid_50t=0
+            ]]>
+    </update>
+
+    <update id="updPointByBid" >
+        <![CDATA[
+              update myusers set point=point+#{point} where uid=#{uid}
+            ]]>
+    </update>
+
+    <select id="getDataList" resultType="map">
+        <![CDATA[
+              select * from ${tableName} limit #{start},#{limit}
+            ]]>
+    </select>
+
+    <select id="getDataListRows" resultType="integer">
+        <![CDATA[
+              select count(*) from ${tableName}
+            ]]>
+    </select>
+    <insert id="pointMallAdd" parameterType="pointmall">
+        <![CDATA[
+              insert into point_mall values(null,#{mall.name},#{mall.stock},
+              #{mall.point},#{mall.limit},#{mall.image},#{mall.detail})
+            ]]>
+    </insert>
+    <update id="pointMallUpd" parameterType="pointmall">
+        <![CDATA[
+              update point_mall set name=#{mall.name},stock=#{mall.stock},
+              point=#{mall.point},`limit`=#{mall.limit},image=#{mall.image},
+               detail=#{mall.detail} where id=#{mall.id}
+            ]]>
+    </update>
+    <select id="validateUserLimit" resultType="integer" >
+        <![CDATA[
+              select count(*) from point_mall where
+               (select `limit` from point_mall where id=#{mid})
+                  >(select count(*) from mall_exchange where mall_id=#{mid}
+                    and user_id=#{uid} and (select substring_index(NOW(),' ',1))
+			        =(select SUBSTRING_INDEX((select max(time)time from mall_exchange where user_id=#{uid} and mall_id=#{mid} ),' ',1)))
+            ]]>
+    </select>
+
+    <select id="selSomethingGetCount" resultType="int" >
+        <![CDATA[
+              select count(*) from ${tableName} where ${conditional}
+        ]]>
+    </select>
+    <insert id="insertSomething" parameterType="String">
+        <![CDATA[
+              insert into ${tableName} values(${values})#;
+        ]]>
+    </insert>
+
+    <select id="selSomething" resultType="map" >
+        <![CDATA[
+              select ${column} from ${tableName} where ${conditional}
+        ]]>
+    </select>
+
+    <update id="updSomething" parameterType="string" >
+        <![CDATA[
+              update ${tableName} set ${values} where ${conditional}
+        ]]>
+    </update>
+
+    <select id="selRedEnvelopesById" resultType="RedEnvelopes" >
+        <![CDATA[
+              select * from red_envelopes where id=#{id}
+        ]]>
+    </select>
+</mapper>

@@ -1,0 +1,76 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.NewsListDao">
+
+    <select id="getOneLaw" parameterType="int" resultType="law">
+         <![CDATA[
+            SELECT * FROM lawlist n where n.lid=${lid}
+                ]]>
+    </select>
+
+    <select id="lawList" resultType="law">
+         <![CDATA[
+            SELECT * FROM lawlist n order by n.lid DESC limit #{beginIndex} ,#{pageCount}
+                ]]>
+    </select>
+
+    <select id="lawRow"  resultType="integer" >
+        <![CDATA[
+          select count(*) from lawlist
+        ]]>
+    </select>
+
+
+    <select id="allNewList" resultType="newslist">
+         <![CDATA[
+            SELECT * FROM newslist
+                ]]>
+    </select>
+
+    <select id="getOneNew" parameterType="int" resultType="newslist">
+         <![CDATA[
+            SELECT * FROM newslist n where n.nid=${nid}
+                ]]>
+    </select>
+
+    <insert id="saveNewsList" parameterType="newslist">
+        <selectKey keyColumn="id" keyProperty="nid" resultType="integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        <![CDATA[
+            insert into newslist(nedid,ntitle,ncontent,ntype,cdate,rdate,state) values(#{nedid},#{ntitle},#{ncontent},#{ntype},#{cdate},#{rdate},#{state})
+        ]]>
+    </insert>
+
+    <select id="newsRow"  resultType="integer" >
+        <![CDATA[
+          select count(*) from newslist
+        ]]>
+    </select>
+
+    <select id="selNewsListByPage" resultType="newslist">
+      <![CDATA[
+          select * from newslist n order by n.nid DESC limit #{beginIndex} ,#{pageCount}
+       ]]>
+    </select>
+
+    <delete id="delNewById" parameterType="Integer">
+    <![CDATA[
+            delete from newslist where nid=#{nid}
+         ]]>
+    </delete>
+
+    <delete id="delLawById" parameterType="Integer">
+    <![CDATA[
+            delete from lawlist where lid=#{lid}
+         ]]>
+    </delete>
+
+    <insert id="saveNewsLaw" parameterType="newslist">
+
+        <![CDATA[
+            insert into lawlist(empid,title,context,cdate,state) values(#{empid},#{title},#{context},#{cdate},#{state})
+        ]]>
+    </insert>
+</mapper>

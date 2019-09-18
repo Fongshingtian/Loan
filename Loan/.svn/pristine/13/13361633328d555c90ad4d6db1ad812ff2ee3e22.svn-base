@@ -1,0 +1,54 @@
+.kbdiv1 {
+float:left;background:#fff;
+}
+.kbdiv2 {
+position:absolute;top:90px;left:320px;
+}
+.kbdiv3 {
+position: relative;top:40px;
+}
+.kbdiv4 {
+position: relative;left:40px;height:60px;width:843px;border-bottom:1px solid #e5e5e5
+}
+.kbdiv5 {
+position: relative;top:40px;left:40px;height:83px;width:843px;
+}
+.kbdiv6 {
+position: relative;left:40px;
+}
+.kbdiv7 {
+position: absolute;top:24px;left:120px;float:left;
+}
+.kbdiv8 {
+width:60px;height:25px;background: white;box-shadow:0px 0px 0px rgba(0,0,0,0.2);transition: all 0.5s;float:left; display:block;border:1px solid #c2c2c2;text-align: center;line-height: 25px;
+}
+.kbdiv9 {
+width:10px;height:25px;background: white;box-shadow:0px 0px 0px rgba(0,0,0,0.2);transition: all 0.5s;float:left; display:block;text-align: center;line-height: 25px;
+}
+.kbfont1 {
+font-size:28px;color:#fff;
+}
+.kbfont2 {
+font-size:12px;color:#fff;
+}
+.kbfont3 {
+font-size: 16px;
+}
+.kbli1 {
+position: relative;left:40px;line-height: 70px;font-size: 18px;
+}
+.kbli1:hover {
+	color :#F00
+}
+.kbdivs {
+content: '';    position: absolute;    width: 6px;    height: 6px;    top: 30px;    left: 11px;    background: #e5e5e5;    border-radius: 50%;
+}
+.kbspan1 {
+line-height: 70px;font-size: 16px;float:left
+}
+.onthisa {
+	background:#ff6666;
+}
+.onthisa2 {
+color:#fff;
+}

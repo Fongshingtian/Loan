@@ -1,0 +1,26 @@
+package com.ht.dao;
+
+import com.ht.bean.zbgj;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @ClassName:
+ * @Description:
+ * @author:
+ * @version:
+ * @Date:
+ */
+public interface InvestDao {
+    //查询所有招标工具
+    public List selezbgj(Integer types);
+
+    //查看投标详情
+    public Map selzbgjson(Integer id);
+
+    //查询一个标 的所有期数
+    public List selzbgjs(Integer s);
+
+
+}

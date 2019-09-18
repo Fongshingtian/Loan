@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.Ht_LoanDao">
+
+
+    <select id="hselloan"  resultType="Loan">
+        <![CDATA[
+        select * from  loan where status=#{status}
+        ]]>
+    </select>
+
+    <update id="dycsb" parameterType="loan">
+        <![CDATA[
+          update loan set status=#{status} ,sm=#{sm} where did=#{id}
+        ]]>
+    </update>
+    <update id="decsq" parameterType="loan">
+        <![CDATA[
+        update loan set status=#{status} ,sm=#{sm} ,sjmoney=#{money} where did=#{id}
+        ]]>
+    </update>
+
+    <select id="sphistory"  resultType="Loan">
+        <![CDATA[
+        select * from  loan where status>1
+        ]]>
+    </select>
+    <select id="selbyloan"  resultType="Loan">
+        <![CDATA[
+        select * from  loan where did=#{id}
+        ]]>
+    </select>
+
+    <select id="selproduct"  resultType="product_induce">
+        <![CDATA[
+        select * from  product_induce where pid=#{id}
+        ]]>
+    </select>
+
+    <select id="seltwosq"  resultType="mx">
+        <![CDATA[
+        select * from  mx where mid=#{id}
+        ]]>
+    </select>
+
+    <update id="uptemx">
+        update  mx set ll=#{ll},qytime=#{qytime} where  mid=#{mid}
+    </update>
+</mapper>

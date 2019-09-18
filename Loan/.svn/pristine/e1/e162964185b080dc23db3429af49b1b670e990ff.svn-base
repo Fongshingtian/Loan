@@ -1,0 +1,1 @@
+$(function(){$(".question-list-title li").on("click",function(){var i=$(this).index();$(".question-list-title li").removeClass("active"),$(this).addClass("active"),$(".q-body").css({marginTop:60,opacity:0}).hide(),$(".q-body").eq(i).show().animate({marginTop:0,opacity:1,display:"block"},1e3,function(){})})});

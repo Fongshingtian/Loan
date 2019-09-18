@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.ProductInduceDao">
+    <select id="selpro" resultType="product_induce">
+      <![CDATA[
+          select * from product_induce  limit #{beginIndex} ,#{pageCount}
+       ]]>
+    </select>
+
+    <insert id="addpro" parameterType="product_induce">
+        <![CDATA[
+          insert into product_induce values (#{pid},#{picture},#{pname},#{ptext},#{jked},#{shtime},#{jkqs},#{flsm},#{sqtj},#{tgzl})
+        ]]>
+    </insert>
+    
+    <select id="selbyid" resultType="product_induce" parameterType="Integer">
+        <![CDATA[
+          select * from product_induce where pid=#{pid}
+        ]]>
+    </select>
+
+    <update id="updpro" parameterType="product_induce">
+        <![CDATA[
+          update product_induce set picture=#{product_induce.picture},pname=#{product_induce.pname},ptext=#{product_induce.ptext},jked=#{product_induce.jked},shtime=#{product_induce.shtime},jkqs=#{product_induce.jkqs},flsm=#{product_induce.flsm},sqtj=#{product_induce.sqtj},tgzl=#{product_induce.tgzl} where pid=#{product_induce.pid}
+        ]]>
+    </update>
+    
+    <delete id="delprobyid" parameterType="Integer">
+        <![CDATA[
+            delete from product_induce where pid=#{pid}
+         ]]>
+
+    </delete>
+
+    <select id="selplistbuselect" resultType="product_induce">
+        <![CDATA[
+        select pid,pname from product_induce
+        ]]>
+    </select>
+
+    <select id="prototalRow"  resultType="integer" >
+        <![CDATA[
+          select count(*) from product_induce
+        ]]>
+    </select>
+
+    <select id="prolist" resultType="product_induce" >
+        <![CDATA[
+          select * from product_induce
+        ]]>
+    </select>
+</mapper>

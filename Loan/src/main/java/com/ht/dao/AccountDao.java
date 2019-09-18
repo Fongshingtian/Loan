@@ -1,0 +1,162 @@
+package com.ht.dao;
+
+import com.ht.bean.*;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @company 宏图
+ * @User 张冬招
+ * @create 2019-04-24 -19:21
+ */
+public interface AccountDao {
+    //添加用户(返回插入数据的id)
+    public int  addmyusers(myusers myusers);
+
+    //积分记录添加表
+    public void addpoint(integral integral);
+
+    //查询所有用户的手机号
+    public List<myusers> selphone();
+
+    //账户表accounts添加数据
+    public void addaccounts(accounts accounts);
+
+    //用户登入验证
+    public myusers loginsel(@Param("phone") String phone,@Param("loginpwd") String loginpwd);
+
+    //根据uid查找用户
+    public myusers seluserbyid(Integer uid);
+    //过呢据uid查找账户
+    public accounts selaccountbyuid(Integer uid);
+
+    //根据用户uid查询实名认证表
+    public real_name selrealbyuid(Integer uid);
+
+    //根据用户查询积分记录表
+    public List selpoint(Integer uid);
+
+    //根据用户和各种条件查询没有changetype
+    public List selpointtwo(@Param("uid") Integer uid,@Param("begintime") String begintime,@Param("endtime") String endtime);
+    //根据用户和各种条件查询 有changetype
+    public List selpointthree(@Param("uid") Integer uid,@Param("begintime") String begintime,@Param("endtime") String endtime,@Param("changetype")String changetype);
+
+    //实名认证与绑定银行卡
+    void authentication(@Param("r")real_name r);
+    //用户累计收入(积分记录表)
+    public Integer selpointscount(Integer uid);
+
+    //用户本月积分计算（积分记录表）
+    public Integer selpointsmonth(@Param("uid") Integer uid,@Param("date1") String date1);
+
+    public List selcodemy(Integer uid);
+
+    public void updmycode(@Param("uid") Integer uid,@Param("code") String code);
+
+
+    //通过邀请码查找好友（mycode）
+    public myusers selmycode(String code);
+
+    public void  addfriend(friend ff);
+
+    void updSomething(@Param("tableName")String tableName,
+                      @Param("columnAValue")String columnAValue,
+                      @Param("requirement")String requirement);
+
+    //注册成功时插入一条用户成长列
+    void insertTask(@Param("id") Integer id);
+
+    //修改已实名认证的交易密码
+    public void updidpwd(@Param("uid") Integer uid,@Param("idpwd") String idpwd);
+
+    //根据用户id查询资金记录表
+    public List selrecord(Integer uid);
+    //根据用户id查询资金记录表 分页
+    public List selrecordbypage(@Param("uid") Integer uid,@Param("beginIndex") Integer beginIndex,@Param("pageCount") Integer pageCount);
+    //根据用户id查询资金记录表 分页
+//    public List selrecordbypage2(@Param("uid") Integer uid,@Param("starttime") String starttime,@Param("endtime")String endtime,@Param("beginIndex") Integer beginIndex,@Param("pageCount") Integer pageCount);
+
+    //根据用户id和操作 状态 查询资金记录表 状态
+    public List selrecordbypageandtype(@Param("uid") Integer uid,@Param("starttime") String starttime,@Param("endtime")String endtime,@Param("rtype") String rtype,@Param("beginIndex") Integer beginIndex,@Param("pageCount") Integer pageCount);
+
+    //根据用户id和操作 时间  查询资金记录表 分页
+    public List selrecordbypageandtime(@Param("uid") Integer uid,@Param("starttime") String starttime,@Param("endtime")String endtime,@Param("beginIndex") Integer beginIndex,@Param("pageCount") Integer pageCount);
+
+
+
+
+
+    //根据用户查询我的id
+    List<mytb> selectbyuserid(Integer id);
+    //根据我的网贷id更改状态
+
+    void updatemybt(@Param("id") String id,@Param("status") String status);
+
+    //根据id查询单个网贷
+
+      mytb selemytbyid(Integer bid);
+
+      //根据贷款产品查询已投的历史
+     Integer selelscont(Integer zid );
+
+    //查询获得一些东西
+    List<Map> selSomething(@Param("tableName")String tableName , @Param("requirement")String requirement);
+
+    //添加点东西
+    void insertSomething(@Param("tableName")String tableName,@Param("values")String values);
+
+
+    //我的消息添加数据
+    public void addmessage(messge me);
+
+    //修改账户总资产和可用余额
+    public void updacc(@Param("uid") Integer uid,@Param("countmoney") Float countmoney,@Param("kyye") Float kyye);
+
+    //资金记录添加数据
+    public void addrecord(record re);
+
+    //获取当前时间的前三个月的时间点
+    public String seltimebefore();
+
+    public List selmessgelist(@Param("uid") Integer uid,@Param("times") String times);
+
+    //根据用户id和近三个月的记录  分页
+    public List selmessgelistbypage(@Param("uid") Integer uid,@Param("times") String times,@Param("beginIndex") Integer beginIndex,@Param("pageCount") Integer pageCount);
+
+
+    //根据mid改变消息状态
+    public void updmesgmsatte(@Param("mid") Integer mid,@Param("mstate") String mstate);
+
+
+    //根据id删除消息
+    public void dellmesg(String ids);
+
+    public void updstateall(@Param("ids") String ids,@Param("state") String state);
+
+    //查找好友表
+    public List selfiriend(Integer myuid);
+
+    //查询所有招标工具
+    public List selezbgj(Integer types);
+
+    public integral seljfcheck(@Param("uid") Integer uid,@Param("times") String times);
+
+
+    //修改用户piont字段
+    public void updpiont(@Param("uid")Integer uid,@Param("point") Integer point);
+
+    //添加联系人
+    public void addlxr(urgentusers ur);
+
+    //修改用户联系人状态
+    public void upduserlxr(@Param("uid") Integer uid ,@Param("state") String state);
+
+    //根据uid 修改用户邮箱
+    public void  updemail(@Param("uid") Integer uid,@Param("email") String email);
+
+    //根据uid 修改用户登入密码
+    public void  updloginpwd(@Param("uid") Integer uid,@Param("loginpwd") String loginpwd);
+
+}

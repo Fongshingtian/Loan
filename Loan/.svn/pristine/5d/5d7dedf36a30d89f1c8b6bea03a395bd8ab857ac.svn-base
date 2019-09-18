@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.InvestDao">
+
+
+    <select id="selezbgj"  resultType="map">
+        <![CDATA[
+             select * from  zbgj z ,zbgjson l where z.zid =l.zid and z.types=#{types}  order by l.sid desc limit 5
+         ]]>
+    </select>
+    <select id="selzbgjson"  resultType="map">
+        <![CDATA[
+        select * from  zbgj z ,zbgjson s where z.zid = s.zid and s.sid= #{id}
+        ]]>
+    </select>
+    <select id="selzbgjs"  resultType="map">
+        <![CDATA[
+        select * from  zbgj z ,zbgjson s where z.zid = s.zid and z.zid= #{id}
+        ]]>
+    </select>
+</mapper>

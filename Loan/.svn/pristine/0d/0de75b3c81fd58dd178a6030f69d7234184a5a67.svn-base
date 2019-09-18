@@ -1,0 +1,48 @@
+package com.ht.commons;
+
+import com.ht.bean.RedEnvelopes;
+import com.ht.service.IVipCenterService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+@Component
+//红包的相关操作
+public class OperateRedEnvelopes {
+
+    private static IVipCenterService ivcs;
+
+    @Autowired
+    public void getIVipCenterService(IVipCenterService ivcs){
+        OperateRedEnvelopes.ivcs=ivcs;
+    }
+
+    //根据所投资金额获取可用的符合要求的红包
+    public static List getUsableRedEnvelopes(Integer userId,Integer amount){
+        SimpleDateFormat s=new SimpleDateFormat("yyyy-MM-dd");
+        String date=s.format(new Date());
+        List<Map> list=new ArrayList<Map>();
+        list=ivcs.selSomething("*","red_envelopes",
+                "start<='"+date+"' and end>='"+date+
+                        "' and statu=0 and user_id="+userId+
+                        " and requirement<="+amount);
+        return list;
+    }
+
+    //根据id获得红包
+    //获取所选择的红包的数据
+    public static RedEnvelopes getRedEnvelopesById(Integer id){
+        return ivcs.selRedEnvelopesById(id);
+    }
+
+    //使用红包后更改红包状态 更改为已使用
+    public static void updRedEnvelopesStatu(Integer id){
+        ivcs.updSomething("red_envelopes","statu=1",
+                          "id="+id);
+    }
+}

@@ -1,0 +1,243 @@
+package com.ht.service.impl;
+
+import com.ht.bean.*;
+import com.ht.dao.MyusersDao;
+import com.ht.service.IMyusersService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+@Service
+public class MyusersServiceImpl implements IMyusersService {
+    /**
+     * 账户信息
+     */
+    @Resource
+    private MyusersDao dao;
+
+    @Override
+    public List<myusers> listall(myusers user, Integer start, Integer limit) {
+        return dao.selall(user,start,limit);
+    }
+
+    @Override
+    public Integer seltotal() {
+        return dao.selrows();
+    }
+
+    @Override
+    public void deluser(Integer uid) {
+        dao.delbyid(uid);
+    }
+
+    /**
+     * 红包优惠劵
+     * @param start
+     * @param total
+     * @return
+     */
+    @Override
+    public List<discounts> listAll(Integer start, Integer total) {
+        return dao.selAll(start,total);
+    }
+
+    @Override
+    public Integer selTotal() {
+        return dao.selRows();
+    }
+
+    @Override
+    public void addyhj(discounts dis) {
+        dao.addyb(dis);
+    }
+
+    @Override
+    public discounts selByDid(Integer did) {
+        return dao.selbydid(did);
+    }
+
+    @Override
+    public void updyhj(discounts discounts) {
+        dao.updateyhj(discounts);
+    }
+
+    @Override
+    public void delByid(Integer did) {
+        dao.delbyId(did);
+    }
+
+    /**
+     * 查询紧急联系人
+     * @return
+     */
+    @Override
+    public List<Urgentusers> urgentList(Integer start,Integer total) {
+        return dao.selurgent(start, total);
+    }
+
+    @Override
+    public Integer lxrcount() {
+        return dao.Urgentrows();
+    }
+
+    /**
+     * 查询账户表
+     * @return
+     */
+    @Override
+    public List<accounts> accountsList(Integer start,Integer total) {
+        return dao.selaccounts(start, total);
+    }
+
+    @Override
+    public Integer AccountRows() {
+        return dao.accountsRows();
+    }
+
+    /**
+     * 查询资金记录表
+     * @return
+     */
+    @Override
+    public List<record> recordlist(Integer start,Integer total) {
+        return dao.selrecord(start,total);
+    }
+
+    @Override
+    public Integer recordRows() {
+        return dao.recordCount();
+    }
+
+    /**
+     * 查询积分历史记录表
+     * @return
+     */
+    @Override
+    public List<integral> integrallist(Integer start,Integer total) {
+        return dao.selintegral(start, total);
+    }
+
+    @Override
+    public Integer integralRows() {
+        return dao.integralcount();
+    }
+
+    /**
+     * 实名认证  （银行卡管理）
+     * @return
+     */
+    @Override
+    public List<real_name> selreal_name(Integer start,Integer total) {
+        return dao.selyhk(start, total);
+    }
+
+    @Override
+    public Integer yhkrows() {
+        return dao.yhktotal();
+    }
+
+    @Override
+    public void addrealname(real_name realName) {
+        dao.addyhk(realName);
+    }
+
+    @Override
+    public real_name selByRid(Integer rid) {
+        return dao.selbyrid(rid);
+    }
+
+    @Override
+    public void updyhk(real_name realName) {
+        dao.updatayhk(realName);
+    }
+
+    @Override
+    public void delyhk(Integer rid) {
+        dao.deleteyhk(rid);
+    }
+
+    /**
+     * 消息
+     * @param start
+     * @param total
+     * @return
+     */
+    @Override
+    public List<messge> selMessge(Integer start, Integer total) {
+        return dao.selmessage(start, total);
+    }
+
+    @Override
+    public Integer messgeRows() {
+        return dao.messgeCount();
+    }
+
+    @Override
+    public void addMessage(messge messge) {
+        dao.addmessge(messge);
+    }
+
+    @Override
+    public messge selByMid(Integer mid) {
+        return dao.selbymid(mid);
+    }
+
+    @Override
+    public void updmessge(messge messge) {
+        dao.updatamessge(messge);
+    }
+
+    @Override
+    public void delmessge(Integer mid) {
+        dao.deletemessge(mid);
+    }
+
+    /**
+     * 好友
+     * @param start
+     * @param total
+     * @return
+     */
+    @Override
+    public List<friend> FriendList(Integer start, Integer total) {
+        return dao.selfriend(start, total);
+    }
+
+    @Override
+    public Integer friendrows() {
+        return dao.ftotalRows();
+    }
+
+    /**
+     * 好友赚取记录
+     * @param start
+     * @param total
+     * @return
+     */
+    @Override
+    public List<friendget> selfriendget(Integer start, Integer total) {
+        return dao.selzqjl(start, total);
+    }
+
+    @Override
+    public Integer zqjltotalrows() {
+        return dao.zqjlrows();
+    }
+
+    /**
+     * 优惠表与用户表关联的中间表
+     * @param start
+     * @param total
+     * @return
+     */
+    @Override
+    public List<middlecount> middlelist(Integer start, Integer total) {
+        return dao.selmiddle(start, total);
+    }
+
+    @Override
+    public Integer middleRows() {
+        return dao.middletotal();
+    }
+}

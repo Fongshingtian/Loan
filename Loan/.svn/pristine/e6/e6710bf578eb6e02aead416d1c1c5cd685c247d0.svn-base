@@ -1,0 +1,1 @@
+$(function(){$(".wrap-left-nav-main ul li").each(function(){$(this).on("click",function(){0!=$(this).index()&&($(".product-list ul").hide().animate({marginTop:20,opacity:0},300),$(".product-list ul").eq($(this).index()-1).animate({marginTop:0,opacity:1},300).show())})})});

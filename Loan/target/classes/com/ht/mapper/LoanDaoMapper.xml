@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.dao.Loandao">
+    <insert id="addloan" parameterType="loan">
+        <![CDATA[
+             INSERT INTO  LOAN VALUES (NULL,#{custName},#{sex},#{idCardNo},#{mobile},#{province},#{city},#{productCode},#{entryAmount},#{periodNum},#{loanPurposeText},#{time},#{status},#{sm},#{sjmoney});
+
+         ]]>
+
+    </insert>
+
+    <select id="selesfz"  resultType="loan">
+        <![CDATA[
+                SELECT *FROM loan  WHERE idCardNo=#{idCardNo} ORDER BY time DESC
+         ]]>
+    </select>
+
+     <select id="seleloanjd" resultType="loan" parameterType="loan">
+
+         <![CDATA[
+             select * from  loan where  idCardNo=#{idCardNo} and custName=#{custName} and mobile=#{mobile}  ORDER BY time DESC
+         ]]>
+     </select>
+
+        <select id="selebyid" resultType="loan">
+
+             <![CDATA[
+             select * from  loan where  did=#{did}
+             ]]>
+
+        </select>
+<select id="selelmxbuyid" resultType="mx">
+
+        <![CDATA[
+             select * from  mx where  mid=#{id}
+             ]]>
+
+</select>
+
+    <insert id="addMx" parameterType="mx">
+         <![CDATA[
+             INSERT INTO  mx VALUES (#{mid},#{workname},#{workaddress},#{workdh},#{homeaddress},#{linkman1},#{linkman2},#{linkman3},#{identitycard},#{gjjzm},#{yhls},#{hm},null,#{jkyt},#{gzhy},#{gzzw},#{sl},#{fc},#{cl},null,#{hkly},#{hkfs},#{age},#{cardNo});
+
+        ]]>
+
+    </insert>
+    <update id="updatestatus" >
+        <![CDATA[
+           update loan set status=#{status} where did=#{did}
+        ]]>
+    </update>
+</mapper>
